@@ -1,6 +1,63 @@
 {
 	"name": "air_pollution",
 	"properties": {
+		"activities": [
+			{
+				"name": "air pollution",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "HttpReadSettings",
+							"requestMethod": "GET",
+							"requestTimeout": ""
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"sink": {
+						"type": "JsonSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "JsonWriteSettings"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "AirPollutionSource",
+						"type": "DatasetReference",
+						"parameters": {
+							"lat": 42.3601,
+							"lon": -71.0589,
+							"start": "@div(sub(ticks(addDays(utcnow(), -365)), 621355968000000000), 10000000)",
+							"end": "@div(sub(ticks(utcnow()), 621355968000000000), 10000000)",
+							"appid": "931ee0ef540ad47c3201f4ccbd7f82bc"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "airpollutionsinl",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
 		"annotations": []
 	}
 }
