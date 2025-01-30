@@ -8,6 +8,10 @@
 				"dependsOn": [],
 				"userProperties": [],
 				"typeProperties": {
+					"items": {
+						"value": "@range(0, 52)",
+						"type": "Expression"
+					},
 					"activities": [
 						{
 							"name": "Historical Weather Extract",
@@ -26,7 +30,8 @@
 									"value": "42.3601"
 								},
 								{
-									"name": "lon"
+									"name": "lon",
+									"value": "71.0565"
 								},
 								{
 									"name": "start"
