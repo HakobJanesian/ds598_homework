@@ -1,0 +1,19 @@
+{
+	"name": "Datalake_Historical_Weather",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Azure_Data_Lake_Factory_Historical_Weather",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "bronze/historical_weather",
+				"fileSystem": "openweatheringestion"
+			}
+		},
+		"schema": {}
+	}
+}
