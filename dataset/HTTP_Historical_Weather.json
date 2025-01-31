@@ -5,6 +5,11 @@
 			"referenceName": "Http_Historical_Wather",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"lat": {
+				"type": "float"
+			}
+		},
 		"annotations": [],
 		"type": "Json",
 		"typeProperties": {
