@@ -20,6 +20,9 @@
 			},
 			"appid": {
 				"type": "int"
+			},
+			"dataType": {
+				"type": "string"
 			}
 		},
 		"annotations": [],
