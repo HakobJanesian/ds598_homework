@@ -189,8 +189,11 @@
 					"end": {
 						"type": "float"
 					},
-					"API_key": {
+					"appid": {
 						"type": "int"
+					},
+					"dataType": {
+						"type": "string"
 					}
 				},
 				"annotations": [],
@@ -198,7 +201,7 @@
 				"typeProperties": {
 					"location": {
 						"type": "HttpServerLocation",
-						"relativeUrl": "data/2.5/history/city?lat={lat}&lon={lon}&type=hour&start={start}&end={end}&appid={API_key}"
+						"relativeUrl": "data/2.5/history/city?lat=@{dataset().lat}&lon=@{dataset().lon}&type=@{dataset().dataType}&start=@{dataset().start}&end=@{dataset().end}&appid=@{dataset().appid}"
 					}
 				},
 				"schema": {}
@@ -369,7 +372,8 @@
 													"type": "Expression"
 												},
 												"end": "@div(sub(ticks(addDays(utcNow(), mul(item(), -7))), ticks('1970-01-01T00:00:00Z')), 10000000)",
-												"API_key": "931ee0ef540ad47c3201f4ccbd7f82bc"
+												"appid": "931ee0ef540ad47c3201f4ccbd7f82bc",
+												"dataType": "hour"
 											}
 										}
 									],
