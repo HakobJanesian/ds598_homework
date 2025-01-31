@@ -24,28 +24,7 @@
 								"secureOutput": false,
 								"secureInput": false
 							},
-							"userProperties": [
-								{
-									"name": "lat",
-									"value": "42.3601"
-								},
-								{
-									"name": "lon",
-									"value": "71.0565"
-								},
-								{
-									"name": "start",
-									"value": "@div(sub(ticks(addDays(utcNow(), -7*(item()+1))),  # 7 days * (current loop index +1) ticks('1970-01-01T00:00:00Z')), 10000000)"
-								},
-								{
-									"name": "end",
-									"value": "@div(sub(ticks(addDays(utcNow(), -7*item())),  # 7 days * current loop index ticks('1970-01-01T00:00:00Z')), 10000000)"
-								},
-								{
-									"name": "appid",
-									"value": "931ee0ef540ad47c3201f4ccbd7f82bc"
-								}
-							],
+							"userProperties": [],
 							"typeProperties": {
 								"source": {
 									"type": "JsonSource",
