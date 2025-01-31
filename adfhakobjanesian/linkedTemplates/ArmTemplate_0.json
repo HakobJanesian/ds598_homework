@@ -25,7 +25,7 @@
 		},
 		"Http_Historical_Wather_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://history.openweathermap.org/"
+			"defaultValue": "http://api.openweathermap.org/"
 		},
 		"Azure_Data_Lake_Factory_Historical_Weather_properties_typeProperties_url": {
 			"type": "string",
