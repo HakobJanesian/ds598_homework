@@ -12,6 +12,7 @@
 						"value": "@range(0, 52)",
 						"type": "Expression"
 					},
+					"isSequential": true,
 					"activities": [
 						{
 							"name": "Historical Weather Extract",
