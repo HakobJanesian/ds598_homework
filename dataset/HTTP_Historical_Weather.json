@@ -8,6 +8,18 @@
 		"parameters": {
 			"lat": {
 				"type": "float"
+			},
+			"lon": {
+				"type": "float"
+			},
+			"start": {
+				"type": "float"
+			},
+			"end": {
+				"type": "float"
+			},
+			"appid": {
+				"type": "int"
 			}
 		},
 		"annotations": [],
