@@ -7,19 +7,19 @@
 		},
 		"parameters": {
 			"lat": {
-				"type": "float"
+				"type": "string"
 			},
 			"lon": {
-				"type": "float"
+				"type": "string"
 			},
 			"start": {
-				"type": "float"
+				"type": "string"
 			},
 			"end": {
-				"type": "float"
+				"type": "string"
 			},
 			"appid": {
-				"type": "int"
+				"type": "string"
 			}
 		},
 		"annotations": [],
