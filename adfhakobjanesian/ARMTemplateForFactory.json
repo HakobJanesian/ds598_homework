@@ -266,8 +266,8 @@
 											"referenceName": "HTTP_Historical_Weather",
 											"type": "DatasetReference",
 											"parameters": {
-												"lat": 42.3601,
-												"lon": -71.0589,
+												"lat": "42.3601",
+												"lon": "-71.0589",
 												"start": {
 													"value": "@div(sub(ticks(addDays(utcNow(), add(-7, mul(item(), -7)))), ticks('1970-01-01T00:00:00Z')), 10000000)",
 													"type": "Expression"
@@ -325,19 +325,19 @@
 				},
 				"parameters": {
 					"lat": {
-						"type": "float"
+						"type": "string"
 					},
 					"lon": {
-						"type": "float"
+						"type": "string"
 					},
 					"start": {
-						"type": "float"
+						"type": "string"
 					},
 					"end": {
-						"type": "float"
+						"type": "string"
 					},
 					"appid": {
-						"type": "int"
+						"type": "string"
 					}
 				},
 				"annotations": [],
