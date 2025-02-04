@@ -18,7 +18,7 @@
 			"value": "https://api.openweathermap.org/data/2.5/weather"
 		},
 		"Http_Historical_Wather_properties_typeProperties_url": {
-			"value": "https://history.openweathermap.org/"
+			"value": "http://history.openweathermap.org/"
 		},
 		"Azure_Data_Lake_Factory_Historical_Weather_properties_typeProperties_url": {
 			"value": "https://hakobjanesian.dfs.core.windows.net/"
