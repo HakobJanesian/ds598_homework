@@ -58,7 +58,8 @@
 				"     ),",
 				"     skipDuplicateMapInputs: false,",
 				"     skipDuplicateMapOutputs: false) ~> flatten1",
-				"flatten1 derive(corrected_timestamp = @(iif(length(toString(timestamp)) <= 10, timestamp, toInteger(null())))) ~> derivedColumn1"
+				"flatten1 derive(corrected_timestamp = @(iif(length(toString(timestamp)) <= 10, timestamp, toInteger(null()))),",
+				"          location = 'Boston') ~> derivedColumn1"
 			]
 		}
 	}
