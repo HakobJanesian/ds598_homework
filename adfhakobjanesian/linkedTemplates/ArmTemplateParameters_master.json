@@ -11,7 +11,13 @@
 		"Azure_Data_Lake_Factory_Historical_Weather_accountKey": {
 			"value": ""
 		},
+		"Historical_Weather_Silver_Blob_Storage_connectionString": {
+			"value": ""
+		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"value": "https://hakobjanesian.dfs.core.windows.net/"
+		},
+		"Azure_Data_Lake_Factory_Historical_Weather_properties_typeProperties_url": {
 			"value": "https://hakobjanesian.dfs.core.windows.net/"
 		},
 		"HTTP_air_pollution_properties_typeProperties_url": {
@@ -19,9 +25,6 @@
 		},
 		"Http_Historical_Wather_properties_typeProperties_url": {
 			"value": "http://history.openweathermap.org/"
-		},
-		"Azure_Data_Lake_Factory_Historical_Weather_properties_typeProperties_url": {
-			"value": "https://hakobjanesian.dfs.core.windows.net/"
 		},
 		"containerUri": {
 			"value": ""
