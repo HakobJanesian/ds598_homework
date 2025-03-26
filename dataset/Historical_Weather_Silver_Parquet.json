@@ -1,0 +1,20 @@
+{
+	"name": "Historical_Weather_Silver_Parquet",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Historical_Weather_Silver_Blob_Storage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"folderPath": "silver",
+				"container": "openweatheringestion"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}
