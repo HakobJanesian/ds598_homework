@@ -651,7 +651,7 @@
 								"referenceName": "Datalake_Historical_Weather",
 								"type": "DatasetReference"
 							},
-							"name": "source1"
+							"name": "BronzeHistoricalWeather"
 						}
 					],
 					"sinks": [
@@ -660,24 +660,24 @@
 								"referenceName": "Historical_Weather_Silver_Parquet",
 								"type": "DatasetReference"
 							},
-							"name": "sink1"
+							"name": "SinkSilverHistoricalWeather"
 						}
 					],
 					"transformations": [
 						{
-							"name": "flatten1"
+							"name": "FlattenAndMapNestedFields"
 						},
 						{
-							"name": "derivedColumn1"
+							"name": "TimestampAndLocation"
 						},
 						{
-							"name": "filter1"
+							"name": "RemoveInvalidRows"
 						},
 						{
-							"name": "derivedColumn2"
+							"name": "DerivedColumns"
 						},
 						{
-							"name": "select1"
+							"name": "RemoveUnnecessaryColumns"
 						}
 					],
 					"scriptLines": [
@@ -693,8 +693,8 @@
 						"     validateSchema: false,",
 						"     ignoreNoFilesFound: false,",
 						"     documentForm: 'documentPerLine',",
-						"     partitionBy('hash', 1)) ~> source1",
-						"source1 foldDown(unroll(list.weather),",
+						"     partitionBy('hash', 1)) ~> BronzeHistoricalWeather",
+						"BronzeHistoricalWeather foldDown(unroll(list.weather),",
 						"     mapColumn(",
 						"          calctime,",
 						"          city_id,",
@@ -717,11 +717,11 @@
 						"          wind_speed = list.wind.speed",
 						"     ),",
 						"     skipDuplicateMapInputs: false,",
-						"     skipDuplicateMapOutputs: false) ~> flatten1",
-						"flatten1 derive(corrected_timestamp = iif(length(toString(timestamp)) <= 10, timestamp, toInteger(null())),",
-						"          location = 'Boston') ~> derivedColumn1",
-						"derivedColumn1 filter(!isNull(corrected_timestamp)) ~> filter1",
-						"filter1 derive(date_time = toTimestamp(toLong(corrected_timestamp) * 1000),",
+						"     skipDuplicateMapOutputs: false) ~> FlattenAndMapNestedFields",
+						"FlattenAndMapNestedFields derive(corrected_timestamp = iif(length(toString(timestamp)) <= 10, timestamp, toInteger(null())),",
+						"          location = 'Boston') ~> TimestampAndLocation",
+						"TimestampAndLocation filter(!isNull(corrected_timestamp)) ~> RemoveInvalidRows",
+						"RemoveInvalidRows derive(date_time = toTimestamp(toLong(corrected_timestamp) * 1000),",
 						"          id = toString(location) + \"_\" + toString(corrected_timestamp),",
 						"          temp_C = round(temp - 273.15),",
 						"          temp_min_C = round(temp_min - 273.15),",
@@ -732,8 +732,8 @@
 						"          temp_max_F = round((temp_max - 273.15) * 9 / 5 + 32),",
 						"          lat = 42.3601,",
 						"          lon = -71.0589,",
-						"          weather_id_value = toInteger(weather_id)) ~> derivedColumn2",
-						"derivedColumn2 select(mapColumn(",
+						"          weather_id_value = toInteger(weather_id)) ~> DerivedColumns",
+						"DerivedColumns select(mapColumn(",
 						"          clouds_all,",
 						"          feels_like_K = feels_like,",
 						"          humidity,",
@@ -762,13 +762,13 @@
 						"          weather_id_value",
 						"     ),",
 						"     skipDuplicateMapInputs: true,",
-						"     skipDuplicateMapOutputs: true) ~> select1",
-						"select1 sink(allowSchemaDrift: true,",
+						"     skipDuplicateMapOutputs: true) ~> RemoveUnnecessaryColumns",
+						"RemoveUnnecessaryColumns sink(allowSchemaDrift: true,",
 						"     validateSchema: false,",
 						"     format: 'parquet',",
 						"     skipDuplicateMapInputs: true,",
 						"     skipDuplicateMapOutputs: true,",
-						"     partitionBy('hash', 1)) ~> sink1"
+						"     partitionBy('hash', 1)) ~> SinkSilverHistoricalWeather"
 					]
 				}
 			},
@@ -790,7 +790,7 @@
 								"referenceName": "airpollutionsinl",
 								"type": "DatasetReference"
 							},
-							"name": "source1"
+							"name": "BronzeAirPollution"
 						}
 					],
 					"sinks": [
@@ -799,24 +799,24 @@
 								"referenceName": "Air_Pollution_Silver_Parquet",
 								"type": "DatasetReference"
 							},
-							"name": "sink1"
+							"name": "SinkSilverAirPollution"
 						}
 					],
 					"transformations": [
 						{
-							"name": "flatten1"
+							"name": "FlattenAndMapNestedFields"
 						},
 						{
-							"name": "derivedColumn1"
+							"name": "TimestampAndLocation"
 						},
 						{
-							"name": "filter1"
+							"name": "RemoveInvalidRows"
 						},
 						{
-							"name": "derivedColumn2"
+							"name": "DerivedColumns"
 						},
 						{
-							"name": "select1"
+							"name": "RemoveUnnecessaryColumns"
 						}
 					],
 					"scriptLines": [
@@ -828,8 +828,8 @@
 						"     validateSchema: false,",
 						"     ignoreNoFilesFound: false,",
 						"     documentForm: 'documentPerLine',",
-						"     partitionBy('hash', 1)) ~> source1",
-						"source1 foldDown(unroll(list),",
+						"     partitionBy('hash', 1)) ~> BronzeAirPollution",
+						"BronzeAirPollution foldDown(unroll(list),",
 						"     mapColumn(",
 						"          lon = coord.lon,",
 						"          lat = coord.lat,",
@@ -845,13 +845,13 @@
 						"          timestamp = list.dt",
 						"     ),",
 						"     skipDuplicateMapInputs: false,",
-						"     skipDuplicateMapOutputs: false) ~> flatten1",
-						"flatten1 derive(corrected_timestamp = iif(length(toString(timestamp)) == 10, toInteger(timestamp), toInteger(null()))",
+						"     skipDuplicateMapOutputs: false) ~> FlattenAndMapNestedFields",
+						"FlattenAndMapNestedFields derive(corrected_timestamp = iif(length(toString(timestamp)) == 10, toInteger(timestamp), toInteger(null()))",
 						",",
-						"          location = 'Boston') ~> derivedColumn1",
-						"derivedColumn1 filter(!isNull(aqi) && !isNull(corrected_timestamp) && !isNull(co)",
-						") ~> filter1",
-						"filter1 derive(date_time = toTimestamp(toLong(corrected_timestamp) * 1000),",
+						"          location = 'Boston') ~> TimestampAndLocation",
+						"TimestampAndLocation filter(!isNull(aqi) && !isNull(corrected_timestamp) && !isNull(co)",
+						") ~> RemoveInvalidRows",
+						"RemoveInvalidRows derive(date_time = toTimestamp(toLong(corrected_timestamp) * 1000),",
 						"          lat = 42.3601,",
 						"          lon = -71.0589,",
 						"          id = toString(location) + \"_\" + toString(corrected_timestamp),",
@@ -863,8 +863,8 @@
 						"          so2 = round(so2, 2),",
 						"          pm2_5 = round(pm2_5, 2),",
 						"          pm10 = round(pm10, 2),",
-						"          nh3 = round(nh3, 2)) ~> derivedColumn2",
-						"derivedColumn2 select(mapColumn(",
+						"          nh3 = round(nh3, 2)) ~> DerivedColumns",
+						"DerivedColumns select(mapColumn(",
 						"          lon,",
 						"          lat,",
 						"          aqi,",
@@ -882,13 +882,13 @@
 						"          corrected_timestamp",
 						"     ),",
 						"     skipDuplicateMapInputs: true,",
-						"     skipDuplicateMapOutputs: true) ~> select1",
-						"select1 sink(allowSchemaDrift: true,",
+						"     skipDuplicateMapOutputs: true) ~> RemoveUnnecessaryColumns",
+						"RemoveUnnecessaryColumns sink(allowSchemaDrift: true,",
 						"     validateSchema: false,",
 						"     format: 'parquet',",
 						"     skipDuplicateMapInputs: true,",
 						"     skipDuplicateMapOutputs: true,",
-						"     partitionBy('hash', 1)) ~> sink1"
+						"     partitionBy('hash', 1)) ~> SinkSilverAirPollution"
 					]
 				}
 			},
@@ -921,8 +921,8 @@
 								"type": "DataFlowReference",
 								"parameters": {},
 								"datasetParameters": {
-									"source1": {},
-									"sink1": {}
+									"BronzeHistoricalWeather": {},
+									"SinkSilverHistoricalWeather": {}
 								}
 							},
 							"staging": {},
@@ -967,8 +967,8 @@
 								"type": "DataFlowReference",
 								"parameters": {},
 								"datasetParameters": {
-									"source1": {},
-									"sink1": {}
+									"BronzeAirPollution": {},
+									"SinkSilverAirPollution": {}
 								}
 							},
 							"staging": {},
