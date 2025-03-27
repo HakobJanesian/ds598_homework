@@ -15,7 +15,7 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "Historical_Weather_Silver_Parquet",
+						"referenceName": "Air_Pollution_Silver_Parquet",
 						"type": "DatasetReference"
 					},
 					"name": "sink1"

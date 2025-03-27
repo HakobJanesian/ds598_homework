@@ -1,0 +1,20 @@
+{
+	"name": "Air_Pollution_Silver_Parquet",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Air_Pollution_Silver_Blob_Storage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"folderPath": "silver",
+				"container": "openweatheringestion"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}
