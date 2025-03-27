@@ -19,6 +19,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'Historical_Weather_Silver_Blob_Storage'"
 		},
+		"Air_Pollution_Silver_Blob_Storage_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'Air_Pollution_Silver_Blob_Storage'"
+		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://hakobjanesian.dfs.core.windows.net/"
@@ -70,6 +74,9 @@
 					},
 					"Historical_Weather_Silver_Blob_Storage_connectionString": {
 						"value": "[parameters('Historical_Weather_Silver_Blob_Storage_connectionString')]"
+					},
+					"Air_Pollution_Silver_Blob_Storage_connectionString": {
+						"value": "[parameters('Air_Pollution_Silver_Blob_Storage_connectionString')]"
 					},
 					"AzureDataLakeStorage1_properties_typeProperties_url": {
 						"value": "[parameters('AzureDataLakeStorage1_properties_typeProperties_url')]"

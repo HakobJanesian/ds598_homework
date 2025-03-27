@@ -14,6 +14,9 @@
 		"Historical_Weather_Silver_Blob_Storage_connectionString": {
 			"value": ""
 		},
+		"Air_Pollution_Silver_Blob_Storage_connectionString": {
+			"value": ""
+		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"value": "https://hakobjanesian.dfs.core.windows.net/"
 		},
